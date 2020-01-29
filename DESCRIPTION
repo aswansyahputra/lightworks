@@ -17,3 +17,5 @@ Imports:
     jabr,
     devtools
 RoxygenNote: 7.0.2
+URL: https://github.com/aswansyahputra/lightworks
+BugReports: https://github.com/aswansyahputra/lightworks/issues
