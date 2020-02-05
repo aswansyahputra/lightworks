@@ -45,7 +45,6 @@ jumlah_penduduk <-
   summarise(jumlah_penduduk = sum(proyeksi_jumlah_penduduk)) %>% 
   ungroup()
 
-
 stunting <-
   read_excel("data-raw/stunting.xlsx", sheet = 2) %>%
   clean_names() %>%
@@ -79,3 +78,15 @@ stunting1 <-
   )
 
 usethis::use_data(stunting1, overwrite = TRUE)
+
+teachers <- 
+  read_excel("data-raw/dirty_data.xlsx") %>%
+  remove_empty() %>%
+  clean_names() %>%
+  mutate(
+    hire_date = excel_numeric_to_date(hire_date),
+    cert = coalesce(certification_9, certification_10)
+  ) %>%
+  select(-certification_9, -certification_10)
+
+usethis::use_data(teachers, overwrite = TRUE)
